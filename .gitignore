@@ -1,0 +1,6 @@
+
+# ignore IDE configuration
+.idea/
+
+# ignore macos artifacts
+.DS_Store
