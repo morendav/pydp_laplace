@@ -213,8 +213,8 @@ if __name__ == '__main__':
     column_filter = {'Month': 'December'}
     # iterations are the number of items a single differentially private statistic is calculated
     # does not make use of privacy budget accounting (i.e. privacy budget is constant across all queries)
-    iterations = 1000
-    privacy_budget = 0.85
+    iterations = 100
+    privacy_budget = 1
     private_histogram_bins = round(iterations * 0.4)
 
     # Pull in and prep data
@@ -257,6 +257,7 @@ if __name__ == '__main__':
     ).grid(axis='x')
     axes[1,1].set_xscale("log")
     axes[0,1].set(ylabel=None) # remove y axis label on upper right subplot (otherwise overlaps with upper left plot)
+    axes[0, 0].set(xlabel=None) # remove x asix label on upper left subplot (label is implied, redundant)
     plt.savefig(path / 'annual_income_distribution_plots.png')
     plt.close()
 
@@ -316,8 +317,8 @@ if __name__ == '__main__':
     )
 
     # normalize array of pydp repeated queries by subrating an array of the nonprivate average
-    normalized_skewed_laplace_distribution = laplace_cenetered_average - skewed_nonprivate_average
-    normalized_skew_corrected_laplace_distribution = skew_corrected_laplace_cenetered_average - skew_corrected_nonprivate_average
+    normalized_skewed_laplace_distribution = (laplace_cenetered_average - skewed_nonprivate_average) / skewed_nonprivate_average
+    normalized_skew_corrected_laplace_distribution = (skew_corrected_laplace_cenetered_average - skew_corrected_nonprivate_average)/skew_corrected_nonprivate_average
 
     # create histograms from normalized repeated private query observations
     # these plots are centered on zero, and demonstrate the width of noise as being proportional to the skewness of the data
