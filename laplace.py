@@ -324,7 +324,7 @@ if __name__ == '__main__':
     normalized_histograms, axes = plt.subplots(2, 2)
     normalized_histograms.suptitle('Normalized noise observations from private queries')
     axes[0, 0].set_title('Skewed source data')
-    axes[0, 1].set_title('Skew correctd source data')
+    axes[0, 1].set_title('Skew corrected source data')
 
     # Plot left column: historgram (without scaling) and a boxplot demonstrating extreme right skewness of the data
     skewed_source_data_histo = histplot(
